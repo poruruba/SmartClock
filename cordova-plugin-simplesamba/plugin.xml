@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    id="cordova-plugin-simplesamba" version="0.0.1">
+    <name>SimpleSambaPlugin</name>
+    <js-module src="www/plugin_simplesamba.js" name="simplesamba_plugin">
+        <clobbers target="simplesamba_plugin" />
+    </js-module>
+    <platform name="android">
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="SimpleSambaPlugin" >
+                <param name="android-package" value="jp.or.sample.SimpleSambaPlugin.Main"/>
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <config-file target="AndroidManifest.xml" parent="/*">
+            <uses-permission android:name="android.permission.INTERNET" />
+        </config-file>
+        <framework src="eu.agno3.jcifs:jcifs-ng:2.1.9" />
+        <source-file src="src/android/jp/or/sample/SimpleSambaPlugin/Main.java" target-dir="src/jp/or/sample/SimpleSambaPlugin" />
+    </platform>
+    <platform name="ios">
+        <config-file target="config.xml" parent="/*">
+            <feature name="SimpleSambaPlugin">
+                <param name="ios-package" value="SimpleSambaPlugin" />
+                <param name="onload" value="true" />
+            </feature>
+        </config-file>
+        <podspec>
+            <pods use-frameworks="true">
+                <pod name="AMSMB2" />
+            </pods>
+        </podspec>
+        <source-file src="src/ios/SimpleSambaPlugin.swift"  target-dir="src/ios" />
+    </platform>
+</plugin>

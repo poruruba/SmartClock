@@ -1,0 +1,39 @@
+{
+  "name": "jp.or.sample.smartclock",
+  "displayName": "SmartClock",
+  "version": "1.0.0",
+  "description": "A sample Apache Cordova application that responds to the deviceready event.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "ecosystem:cordova"
+  ],
+  "author": "Apache Cordova Team",
+  "license": "Apache-2.0",
+  "devDependencies": {
+    "cordova-android": "^14.0.1",
+    "cordova-plugin-fetch": "^0.0.1",
+    "cordova-plugin-geolocation": "^5.0.0",
+    "cordova-plugin-powermanagement": "github:cranberrygame/cordova-plugin-powermanagement",
+    "cordova-plugin-samplesensor": "file:../cordova-plugin-samplesensor",
+    "cordova-plugin-simplesamba": "file:../cordova-plugin-simplesamba",
+    "cordova.plugins.diagnostic": "^7.2.7"
+  },
+  "cordova": {
+    "plugins": {
+      "cordova-plugin-simplesamba": {},
+      "cordova-plugin-powermanagement": {},
+      "cordova.plugins.diagnostic": {},
+      "cordova-plugin-samplesensor": {},
+      "cordova-plugin-geolocation": {
+        "GPS_REQUIRED": "true"
+      },
+      "cordova-plugin-fetch": {}
+    },
+    "platforms": [
+      "android"
+    ]
+  }
+}

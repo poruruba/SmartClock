@@ -1,0 +1,33 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="jp.or.sample.SmartClock" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>SmartClock</name>
+    <description>Sample Apache Cordova App</description>
+    <author email="dev@cordova.apache.org" href="https://cordova.apache.org">
+        Apache Cordova Team
+    </author>
+<!--
+    <content src="index.html" />
+-->
+
+    <allow-navigation href="https://[配置したホスト名]/cordova_base/*" />
+    <preference name="Orientation" value="landscape" />
+
+    <platform name="android">
+      <config-file target="AndroidManifest.xml" parent="/manifest">
+          <uses-permission android:name="android.permission.INTERNET" />
+          <uses-permission android:name="android.permission.CAMERA"/>
+          <uses-permission android:name="android.permission.RECORD_AUDIO" />
+          <uses-feature android:name="android.hardware.camera" android:required="true"/>
+      </config-file>
+
+      <preference name="Fullscreen" value="true"/>
+      <preference name="AndroidLaunchMode" value="singleTask" />
+      <edit-config file="AndroidManifest.xml" target="/manifest/application" mode="merge">
+        <application android:usesCleartextTraffic="true" />
+      </edit-config>
+      <content src="https://[配置したホスト名]/cordova_base/smartclock/android/index.html" />
+    </platform>
+
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+</widget>

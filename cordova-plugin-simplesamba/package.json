@@ -1,0 +1,11 @@
+{
+  "name": "cordova-plugin-simplesamba",
+  "version": "0.0.1",
+  "cordova": {
+    "id": "cordova-plugin-simplesamba",
+    "platforms": [
+      "android",
+      "ios"
+    ]
+  }
+}
