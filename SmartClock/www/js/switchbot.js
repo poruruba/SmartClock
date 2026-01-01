@@ -1,6 +1,6 @@
 "use strict";
 
-const base_url = "https://api.switch-bot.com/v1.1";
+const SWITCHBOT_URL = "https://api.switch-bot.com/v1.1";
 
 class SwitchBot{
     constructor(token, secret){
@@ -36,7 +36,7 @@ class SwitchBot{
 
     async getDeviceList(){
       var headers = await this.makeSign();
-      var json = await do_get_with_authorization(base_url + "/devices", null, headers);
+      var json = await do_get_with_authorization(SWITCHBOT_URL + "/devices", null, headers);
       if( json.statusCode != 100 )
         throw new Error("statusCode is not 100");
       return json.body;
@@ -44,7 +44,7 @@ class SwitchBot{
 
     async getDeviceStatus(deviceId){
       var headers = await this.makeSign();
-      var json = await do_get_with_authorization(base_url + "/devices/" + deviceId + "/status", null, headers);
+      var json = await do_get_with_authorization(SWITCHBOT_URL + "/devices/" + deviceId + "/status", null, headers);
       if( json.statusCode != 100 )
         throw new Error("statusCode is not 100");
       return json.body;
@@ -57,13 +57,13 @@ class SwitchBot{
         parameter: parameter,
         commandType: commandType
       };
-      var json = await do_post_with_authorization(base_url + "/devices/" + deviceId + "/commands", params, headers);
+      var json = await do_post_with_authorization(SWITCHBOT_URL + "/devices/" + deviceId + "/commands", params, headers);
       if( json.statusCode != 100 )
         throw new Error("statusCode is not 100");
     }
 }
 
-function do_get_with_authorization(url, qs, authorization) {
+async function do_get_with_authorization(url, qs, authorization) {
   var params = new URLSearchParams(qs ? qs : {});
 
   var params_str = params.toString();
@@ -80,8 +80,8 @@ function do_get_with_authorization(url, qs, authorization) {
     });
 }
 
-function do_post_with_authorization(url, body, authorization) {
-  var headers = JSON.parse(JSON.stringify(headers));
+async function do_post_with_authorization(url, body, authorization) {
+  var headers = JSON.parse(JSON.stringify(authorization));
   headers["Content-Type"] = "application/json";
 
   return _fetch(url, {
@@ -94,4 +94,5 @@ function do_post_with_authorization(url, body, authorization) {
         throw new Error('status is not 200');
       return response.json();
     });
+
 }
